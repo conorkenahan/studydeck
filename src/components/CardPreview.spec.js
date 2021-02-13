@@ -4,6 +4,6 @@ import { CardPreview} from './CardPreview';
 
 it('Renders the expected term', () => {
     const expectedTerm = 'this is a test';
-    const { getByText } = render(<CardPreview term='this is a test' />)
+    const { getByText } = render(<CardPreview term={expectedTerm} />)
     getByText(expectedTerm)
 })

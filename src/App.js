@@ -1,8 +1,19 @@
 import './App.css';
 import './normalize.css'
 import CardPreview from "./components/CardPreview"
+import React, {useState, useEffect} from 'react';
 
 function App() {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    fetch('https://confirmed-scalloped-macrame.glitch.me/api/card')
+    .then(res => res.json())
+    .then(cards => {
+      setCards(cards)
+    })
+  })
+
   return (
     <div>
       <header>
@@ -11,10 +22,11 @@ function App() {
       </header>
       <main>
         <h3>Your Cards</h3>
+        {/* <pre>{JSON.stringify(cards, null, 2)}</pre> */}
         <div className="gridContainer">
-          <CardPreview definition="quack" term="What does a duck say?"/>
-          <CardPreview definition="moo" term="What does a cow say?"/>
-          <CardPreview definition="woof" term="What does a dog say?"/>
+          {cards.map((card) => (
+            <CardPreview definition={card.definition} term={card.term}/>
+          ))}
         </div>
       </main>
     </div>
