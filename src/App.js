@@ -9,23 +9,20 @@ function App() {
   useEffect(() => {
     fetch('https://confirmed-scalloped-macrame.glitch.me/api/card')
     .then(res => res.json())
-    .then(cards => {
-      setCards(cards)
-    })
-  })
+    .then(setCards)
+  }, [])
 
   return (
     <div>
       <header>
         <h1>Study<span className="titleHighlight">Deck</span></h1>
-        <h2>Retention through repitition</h2>
+        <h2>Retention through repetition</h2>
       </header>
       <main>
         <h3>Your Cards</h3>
-        {/* <pre>{JSON.stringify(cards, null, 2)}</pre> */}
         <div className="gridContainer">
-          {cards.map((card) => (
-            <CardPreview definition={card.definition} term={card.term}/>
+          {cards.map(({id, definition, term}) => (
+            <CardPreview definition={definition} term={term} id={id}/>
           ))}
         </div>
       </main>
