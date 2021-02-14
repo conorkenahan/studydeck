@@ -2,14 +2,13 @@ import './App.css';
 import './normalize.css'
 import CardPreview from "./components/CardPreview"
 import React, {useState, useEffect} from 'react';
+import { getCards } from './components/services/cardService';
 
 function App() {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    fetch('https://confirmed-scalloped-macrame.glitch.me/api/card')
-    .then(res => res.json())
-    .then(setCards)
+    getCards().then(setCards)
   }, [])
 
   return (
