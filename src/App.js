@@ -2,7 +2,7 @@ import './App.css';
 import './normalize.css'
 import CardPreview from "./components/CardPreview"
 import React, {useState, useEffect} from 'react';
-import { getCards } from './components/services/cardService';
+import { getCards } from './services/cardService';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -21,7 +21,7 @@ function App() {
         <h3>Your Cards</h3>
         <div className="gridContainer">
           {cards.map(({id, definition, term}) => (
-            <CardPreview definition={definition} term={term} id={id}/>
+            <CardPreview definition={definition} term={term} id={id} key={id}/>
           ))}
         </div>
       </main>
