@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import { destroyCard } from '../services/cardService';
 
 export default function CardPreview(props) {
     const [isFront, setIsFront] = useState(true);
@@ -7,7 +8,13 @@ export default function CardPreview(props) {
     }
 
     function handleDelete() {
-       props.onRemove(props.id); 
+        const confirm = window.confirm(`Are you sure you wish to delete "${props.term}?`)
+        if(confirm) {
+        destroyCard(props.id).then(() => {
+            props.onRemove && typeof props.onRemove === 'function' && props.onRemove(props.id)
+        }); 
+            
+        }
     }
     
     return (
