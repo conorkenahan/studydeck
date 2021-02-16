@@ -5,6 +5,10 @@ export default function CardPreview(props) {
     function handleCardFlip() {
         setIsFront(current  => !current)
     }
+
+    function handleDelete() {
+       props.onRemove(props.id); 
+    }
     
     return (
         <div className={`tile ${isFront ? '' : 'back'}`}>
@@ -13,7 +17,7 @@ export default function CardPreview(props) {
                 <button type="button" className="tertiary" onClick={handleCardFlip}>show back</button>
                 <div>
                     <button type="button" className="secondary">edit</button>
-                    <button type="button" className="secondary danger">delete</button>
+                    <button type="button" className="secondary danger" onClick={handleDelete}>delete</button>
                 </div>
             </div>
         </div>

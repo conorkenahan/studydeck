@@ -11,6 +11,10 @@ function App() {
     getCards().then(setCards)
   }, [])
 
+  function handleRemove(id) {
+    setCards(existing => existing.filter(c => c.id !== id))
+  }
+
   return (
     <div>
       <header>
@@ -21,7 +25,13 @@ function App() {
         <h3>Your Cards</h3>
         <div className="gridContainer">
           {cards.map(({id, definition, term}) => (
-            <CardPreview definition={definition} term={term} id={id} key={id}/>
+            <CardPreview 
+              definition={definition} 
+              term={term} 
+              id={id} 
+              key={id} 
+              onRemove={handleRemove}
+            />
           ))}
         </div>
       </main>
