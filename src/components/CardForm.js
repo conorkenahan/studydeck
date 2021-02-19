@@ -1,27 +1,38 @@
 import React, { useState } from 'react';
+import { saveCard } from '../services/cardService';
 
 export function CardForm(props) {
     const [term, setTerm] = useState('');
     const [def, setDef] = useState('');
 
-    function handleTermChange(event) {
-        console.log(event)
-        const value = event.target.value;
+    function handleTermChange(e) {
+        const value = e.target.value;
         setTerm(value)
     }
-    function handleDefChange(event) {
-        const { value } = event.target;
+    function handleDefChange(e) {
+        const { value } = e.target;
         setDef(value)
     }
 
-    function clearForm(event) {
+    function clearForm() {
         setTerm('');
         setDef('');
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+        //call API
+        saveCard({ term, definition: def }).then(card => {
+            clearForm();
+            props.onSave && typeof props.onSave === 'fcuntion' && props.onSave(card)
+        })
+        //notify parent
+        // wire up to form
+    }
+
     return (
-        <div className="tile">
-            <form>
+        <div className="tile" onReset>
+            <form onSubmit ={handleSubmit}>
                 <div>
                     <label htmlFor="card_term" >term</label>
                     <textarea id="card_term" value={term} onChange={handleTermChange} />
