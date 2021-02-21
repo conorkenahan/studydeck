@@ -3,7 +3,7 @@ import { saveCard } from '../services/cardService';
 
 export function CardForm(props) {
     const [term, setTerm] = useState('');
-    const [def, setDef] = useState('');
+    const [definition, setDef] = useState('');
 
     function handleTermChange(e) {
         const value = e.target.value;
@@ -21,13 +21,10 @@ export function CardForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        //call API
-        saveCard({ term, definition: def }).then(card => {
+        saveCard({ term, definition }).then(card => {
             clearForm();
-            props.onSave && typeof props.onSave === 'fcuntion' && props.onSave(card)
+            props.onSave && typeof props.onSave === 'function' && props.onSave(card)
         })
-        //notify parent
-        // wire up to form
     }
 
     return (
@@ -39,7 +36,7 @@ export function CardForm(props) {
                 </div>
                 <div>
                     <label htmlFor='card_definition'>definition</label>
-                    <textarea id="card_definition" value={def} onChange={handleDefChange} />
+                    <textarea id="card_definition" value={definition} onChange={handleDefChange} />
                 </div>
                 <div className="buttons">
                     <button className="primary" type="submit">save</button>
