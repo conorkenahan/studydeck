@@ -18,7 +18,7 @@ export default function CardPreview(props) {
     }
     
     return (
-        <div className={`tile ${isFront ? '' : 'back'}`}>
+        <div className={`tile ${isFront ? '' : 'back'}`} onClick={handleCardFlip}>
             <h4 className="cardTerm">{isFront ? props.term : props.definition}</h4>
             <div className="cardButtons">
                 <button type="button" className="tertiary" onClick={handleCardFlip}>show back</button>

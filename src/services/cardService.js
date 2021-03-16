@@ -1,14 +1,17 @@
+const url = 'https://screeching-gem-erigeron.glitch.me/';
+const proxyUrl = 'https://shielded-sea-45679.herokuapp.com/';
+
 export function getCards() {
-    return fetch('/api/card')
+    return fetch(proxyUrl + url + '/api/card')
     .then(res => res.json())
 }
 
 export function destroyCard(id) {
-    return fetch(`/api/card/${id}`, {method: 'DELETE'})
+    return fetch(`${proxyUrl}${url}/api/card/${id}`, {method: 'DELETE'})
 }
 
 export function saveCard(card) {
-    return fetch('/api.card', {
+    return fetch(proxyUrl + url + '/api/card', {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
