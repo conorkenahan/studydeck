@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { saveCard } from '../services/cardService';
+import { saveCard, getCards } from '../services/cardService';
 
 export function CardForm({onSave}) {
     const [term, setTerm] = useState('');
@@ -24,7 +24,8 @@ export function CardForm({onSave}) {
         saveCard({ term, definition }).then(card => {
             clearForm();
             onSave && typeof onSave === 'function' && onSave(card)
-        })
+        });
+        getCards();
     }
 
     return (
