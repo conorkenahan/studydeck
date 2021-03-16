@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { saveCard } from '../services/cardService';
 
-export function CardForm(props) {
+export function CardForm({onSave}) {
     const [term, setTerm] = useState('');
     const [definition, setDef] = useState('');
 
@@ -23,7 +23,7 @@ export function CardForm(props) {
         e.preventDefault();
         saveCard({ term, definition }).then(card => {
             clearForm();
-            props.onSave && typeof props.onSave === 'function' && props.onSave(card)
+            onSave && typeof onSave === 'function' && onSave(card)
         })
     }
 

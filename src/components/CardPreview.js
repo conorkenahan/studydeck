@@ -1,17 +1,17 @@
 import React, { useState} from 'react';
 import { destroyCard } from '../services/cardService';
 
-export default function CardPreview(props) {
+export default function CardPreview({id, term, definition, onRemove}) {
     const [isFront, setIsFront] = useState(true);
     function handleCardFlip() {
         setIsFront(current  => !current)
     }
 
     function handleDelete() {
-        const confirm = window.confirm(`Are you sure you wish to delete "${props.term}?`)
+        const confirm = window.confirm(`Are you sure you wish to delete "${term}?`)
         if(confirm) {
-        destroyCard(props.id).then(() => {
-            props.onRemove && typeof props.onRemove === 'function' && props.onRemove(props.id)
+        destroyCard(id).then(() => {
+            onRemove && typeof onRemove === 'function' && onRemove(id)
         }); 
             
         }
@@ -19,7 +19,7 @@ export default function CardPreview(props) {
     
     return (
         <div className={`tile ${isFront ? '' : 'back'}`} onClick={handleCardFlip}>
-            <h4 className="cardTerm">{isFront ? props.term : props.definition}</h4>
+            <h4 className="cardTerm">{isFront ? term : definition}</h4>
             <div className="cardButtons">
                 <button type="button" className="tertiary" onClick={handleCardFlip}>show back</button>
                 <div>
