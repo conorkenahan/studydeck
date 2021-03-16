@@ -1,7 +1,17 @@
 import React, { useState} from 'react';
 import { destroyCard } from '../services/cardService';
+import { CardForm } from './CardForm';
 
-export default function CardPreview({id, term, definition, onRemove}) {
+export default function CardPreview({ onRemove, ...card }) {
+    const [isEditMode, setIsEditMode] = useState(false);
+    function handleEdit() {
+        setIsEditMode(edit => !edit)
+    }
+
+    return isEditMode ? <CardForm /> : <View {...card} onRemove={onRemove} handleEdit={handleEdit} />
+}
+
+function View({ id, term, definition, onRemove, handleEdit }) {
     const [isFront, setIsFront] = useState(true);
     function handleCardFlip() {
         setIsFront(current  => !current)
@@ -23,7 +33,7 @@ export default function CardPreview({id, term, definition, onRemove}) {
             <div className="cardButtons">
                 <button type="button" className="tertiary" onClick={handleCardFlip}>show back</button>
                 <div>
-                    <button type="button" className="secondary">edit</button>
+                    <button type="button" className="secondary" onClick={handleEdit}>edit</button>
                     <button type="button" className="secondary danger" onClick={handleDelete}>delete</button>
                 </div>
             </div>

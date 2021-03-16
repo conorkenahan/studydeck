@@ -29,7 +29,7 @@ export function CardForm({onSave}) {
     }
 
     return (
-        <div className="tile" onReset>
+        <div className="tile">
             <form onSubmit ={handleSubmit}>
                 <div>
                     <label htmlFor="card_term" >term</label>
