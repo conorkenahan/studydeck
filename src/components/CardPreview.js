@@ -8,7 +8,7 @@ export default function CardPreview({ onRemove, ...card }) {
         setIsEditMode(edit => !edit)
     }
 
-    return isEditMode ? <CardForm /> : <View {...card} onRemove={onRemove} handleEdit={handleEdit} />
+    return isEditMode ? <CardForm onCancel={handleEdit} /> : <View {...card} onRemove={onRemove} handleEdit={handleEdit} />
 }
 
 function View({ id, term, definition, onRemove, handleEdit }) {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { saveCard, getCards } from '../services/cardService';
 
-export function CardForm({onSave}) {
+export function CardForm({ onSave, onCancel }) {
     const [term, setTerm] = useState('');
     const [definition, setDef] = useState('');
 
@@ -17,6 +17,7 @@ export function CardForm({onSave}) {
     function clearForm() {
         setTerm('');
         setDef('');
+        onCancel && typeof onCancel === 'function' && onCancel();
     }
 
     function handleSubmit(e) {

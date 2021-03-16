@@ -23,8 +23,8 @@ function App() {
   return (
     <div>
       <header>
-        <h1>Study<span className="titleHighlight">Deck</span></h1>
-        <h2>Retention through repetition</h2>
+        <h1>Flash<span className="titleHighlight">Me</span></h1>
+        <h2>Study helper</h2>
       </header>
       <main>
         <h3>Your Cards</h3>
