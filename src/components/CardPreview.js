@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import { destroyCard } from '../services/cardService';
 import { CardForm } from './CardForm';
 
-export default function CardPreview({ onRemove, onUpdate, ...card }) {
+export function CardPreview({ onRemove, onUpdate, ...card }) {
     const [isEditMode, setIsEditMode] = useState(false);
     function handleEdit() {
         setIsEditMode(edit => !edit)
@@ -28,7 +28,7 @@ function View({ id, term, definition, onRemove, handleEdit }) {
     }
     
     return (
-        <div className={`tile ${isFront ? '' : 'back'}`} onClick={handleCardFlip}>
+        <div className={`tile ${isFront ? '' : 'back'}`} >
             <h4 className="cardTerm">{isFront ? term : definition}</h4>
             <div className="cardButtons">
                 <button type="button" className="tertiary" onClick={handleCardFlip}>show back</button>

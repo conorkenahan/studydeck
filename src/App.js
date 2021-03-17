@@ -1,8 +1,10 @@
 import './App.css';
 import './normalize.css'
 import React, {useState, useEffect} from 'react';
+import { Route } from "react-router-dom";
 import { getCards } from './services/cardService';
 import { CardList } from './components/CardList';
+import { Practice } from './components/Practice'
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -30,12 +32,15 @@ function App() {
         <h2>Study helper</h2>
       </header>
       <main>
-        <CardList
-          cards={cards}
-          onAdd={handleAdd}
-          onUpdate={handleUpdate}
-          onRemove={handleRemove}
-         />
+        <Route exact path='/'>
+              <CardList
+              cards={cards}
+              onAdd={handleAdd}
+              onUpdate={handleUpdate}
+              onRemove={handleRemove}
+            />
+          </Route>
+        <Route path='/practice' component={Practice}/>
       </main>
     </div>
   );
