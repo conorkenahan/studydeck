@@ -39,8 +39,8 @@ export function CardForm({ onSave, onCancel, card }) {
                     <textarea id={`card_term_${id ? id : 'new'}`} value={term} onChange={handleTermChange} />
                 </div>
                 <div>
-                    <label htmlFor='card_definition'>definition</label>
-                    <textarea id="card_definition" value={definition} onChange={handleDefChange} />
+                    <label htmlFor={`card_definition_${id ? id : 'new'}`}>definition</label>
+                    <textarea id={`card_definition_${id ? id : 'new'}`} value={definition} onChange={handleDefChange} />
                 </div>
                 <div className="buttons">
                     <button className="primary" type="submit">save</button>
