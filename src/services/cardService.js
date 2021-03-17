@@ -11,8 +11,21 @@ export function destroyCard(id) {
 }
 
 export function saveCard(card) {
+    return card.id ? updateCard(card) : createCard(card)
+}
+function createCard(card) {
     return fetch(url + '/api/card', {
         method: 'POST',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(card)
+    }).then(res => res.json())
+}
+
+function updateCard(card) {
+    return fetch(url + `/api/card/${card.id}`, {
+        method: 'PUT',
         headers: {
             'Content-type': 'application/json'
         },
