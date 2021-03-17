@@ -20,6 +20,10 @@ function App() {
     setCards(existing => [...existing, card])
   }
 
+  function handleUpdate(card) {
+    setCards(existing => existing.map(c => c.id === card.id ? card : c))
+  }
+
   return (
     <div>
       <header>
@@ -35,6 +39,7 @@ function App() {
               key={card.id} 
               {...card} 
               onRemove={handleRemove}
+              onUpdate={handleUpdate}
             />
           ))}
         </div>

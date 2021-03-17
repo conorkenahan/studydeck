@@ -24,15 +24,15 @@ export function CardForm({ onSave, onCancel, card }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        saveCard({ term, definition }).then(card => {
+        saveCard({ term, definition, id }).then(card => {
             clearForm();
             onSave && typeof onSave === 'function' && onSave(card)
         });
-        getCards();
     }
 
     return (
         <div className="tile">
+            <h4>{id ? 'Update Card' : 'Add Card'}</h4>
             <form onSubmit ={handleSubmit}>
                 <div>
                     <label htmlFor="card_term" >term</label>

@@ -2,13 +2,13 @@ import React, { useState} from 'react';
 import { destroyCard } from '../services/cardService';
 import { CardForm } from './CardForm';
 
-export default function CardPreview({ onRemove, ...card }) {
+export default function CardPreview({ onRemove, onUpdate, ...card }) {
     const [isEditMode, setIsEditMode] = useState(false);
     function handleEdit() {
         setIsEditMode(edit => !edit)
     }
 
-    return isEditMode ? <CardForm onCancel={handleEdit} /> : <View {...card} onRemove={onRemove} handleEdit={handleEdit} />
+    return isEditMode ? <CardForm onCancel={handleEdit} onSave={onUpdate} card={card} /> : <View {...card} onRemove={onRemove} handleEdit={handleEdit} />
 }
 
 function View({ id, term, definition, onRemove, handleEdit }) {
