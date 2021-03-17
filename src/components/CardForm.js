@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { saveCard, getCards } from '../services/cardService';
 
-export function CardForm({ onSave, onCancel }) {
-    const [term, setTerm] = useState('');
-    const [definition, setDef] = useState('');
+export function CardForm({ onSave, onCancel, card }) {
+    const id = card && card.id ? card.id : undefined;
+
+    const [term, setTerm] = useState(id ? card.term : '');
+    const [definition, setDef] = useState(id ? card.definition : '');
 
     function handleTermChange(e) {
         const value = e.target.value;
