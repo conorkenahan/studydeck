@@ -1,9 +1,8 @@
 import './App.css';
 import './normalize.css'
-import CardPreview from "./components/CardPreview"
 import React, {useState, useEffect} from 'react';
 import { getCards } from './services/cardService';
-import { CardForm } from './components/CardForm';
+import { CardList } from './components/CardList';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -31,18 +30,12 @@ function App() {
         <h2>Study helper</h2>
       </header>
       <main>
-        <h3>Your Cards</h3>
-        <div className="gridContainer">
-          <CardForm onSave ={handleAdd} />
-          {cards.map(card => (
-            <CardPreview 
-              key={card.id} 
-              {...card} 
-              onRemove={handleRemove}
-              onUpdate={handleUpdate}
-            />
-          ))}
-        </div>
+        <CardList
+          cards={cards}
+          onAdd={handleAdd}
+          onUpdate={handleUpdate}
+          onRemove={handleRemove}
+         />
       </main>
     </div>
   );
