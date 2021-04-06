@@ -38,7 +38,7 @@ function App() {
               onAdd={handleAdd}
               onUpdate={handleUpdate}
               onRemove={handleRemove}
-            />
+              />
           </Route>
         <Route path='/practice' component={Practice}/>
       </main>
